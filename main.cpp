@@ -2,14 +2,15 @@
 #include <fstream>
 #include <string>
 #include "llist.h"
+#include "btree.h"
 
 int main(int argc, char **argv) {
     if(argc != 2) {
         std::cout << "Please provide the path to a .txt file.\n";
     }
 
-    // Create new, empty list
-    llNode *head = NULL;
+    // Create new, empty binary tree
+    btNode *root = NULL;
 
     // Open file
     std::ifstream dataFile;
@@ -18,20 +19,16 @@ int main(int argc, char **argv) {
     // Walk throug file line by line
     std::string line;
     while(std::getline(dataFile, line)) {
-        llist_append(&head, stoi(line));
+        root = btree_insert_node_serach_tree(root, stoi(line));
     }
 
     // Close data file
     dataFile.close();
 
-    // Sort the list
-    llist_sort(&head);
+    btree_print_in_order(root);
 
-    // Print the unsorted list
-    llist_print_for_file(head);
-
-    // Free the list
-    llist_delete(&head);
+    // print a newline before exiting
+    std::cout << '\n';
 
     return 0;
 }
