@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
     }
 
     // Create new, empty list
-    Node *head = NULL;
+    llNode *head = NULL;
 
     // Open file
     std::ifstream dataFile;
