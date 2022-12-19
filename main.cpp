@@ -34,6 +34,12 @@ int main(int argc, char **argv) {
     std::cout << "preorder: ";
     btree_print_pre_order(root);
 
+    // print a newline before post-order
+    std::cout << '\n';
+
+    std::cout << "postorder: ";
+    btree_print_post_order(root);
+
     // print a newline before exiting
     std::cout << '\n';
 
