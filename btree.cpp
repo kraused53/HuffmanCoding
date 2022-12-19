@@ -111,3 +111,37 @@ void btree_print_in_order(btNode * root) {
     // Then travel down right path
     btree_print_in_order(root->right);
 }
+
+
+/*
+ * Name:
+ *      btree_print_pre_order
+ * 
+ * Inputs:
+ *      btNode *root
+ *          - Pointer to the root node of a binary tree
+ *  
+ * Outputs:
+ *      None
+ *          - Void function, so no return
+ * 
+ * Description:
+ *     Recursivly print the contents of a binary tree by following the pattern:
+ *          root, left, right
+ * 
+ */
+void btree_print_pre_order(btNode * root) {
+    // If given an empty tree
+    if(root == NULL) {
+        return;
+    }
+
+    // Then print root node
+    std::cout << root->data << " ";
+
+    // Travel down left branch first
+    btree_print_pre_order(root->left);
+
+    // Then travel down right path
+    btree_print_pre_order(root->right);
+}
