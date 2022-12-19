@@ -77,3 +77,37 @@ btNode *btree_search_serach_tree(btNode *root, int key) {
     // If key is less than root, search left sub-tree
     return btree_search_serach_tree(root->left, key);
 }
+
+
+/*
+ * Name:
+ *      btree_print_in_order
+ * 
+ * Inputs:
+ *      btNode *root
+ *          - Pointer to the root node of a binary tree
+ *  
+ * Outputs:
+ *      None
+ *          - Void function, so no return
+ * 
+ * Description:
+ *     Recursivly print the contents of a binary tree by following the pattern:
+ *          left, root, right
+ * 
+ */
+void btree_print_in_order(btNode * root) {
+    // If given an empty tree
+    if(root == NULL) {
+        return;
+    }
+
+    // Travel down left branch first
+    btree_print_in_order(root->left);
+
+    // Then print root node
+    std::cout << root->data << " ";
+
+    // Then travel down right path
+    btree_print_in_order(root->right);
+}
