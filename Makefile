@@ -18,7 +18,8 @@ test1: all
 	diff ./outputs/output1.txt ./expected/expected1.txt
 
 test2: all
-	@echo "No second test yet"
+	./main ./inputs/input2.txt > ./outputs/output2.txt
+	diff ./outputs/output2.txt ./expected/expected2.txt
 
 clean:
 	rm -f main *.o
