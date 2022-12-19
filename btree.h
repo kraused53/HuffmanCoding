@@ -19,6 +19,8 @@
 
     /*** <-- Function Prototypes --> ***/
     btNode *btree_insert_node_serach_tree(btNode *root, int data);
+    btNode *btree_delete_node_serach_tree(btNode *root, int data);
+    btNode *btree_min_value_node_serach_tree(btNode *root);
     btNode *btree_search_serach_tree(btNode *root, int key);
     void btree_print_in_order(btNode * root);
     void btree_print_pre_order(btNode * root);

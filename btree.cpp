@@ -46,6 +46,99 @@ btNode *btree_insert_node_serach_tree(btNode *root, int data) {
 
 /*
  * Name:
+ *      btree_delete_node_search_tree
+ * 
+ * Inputs:
+ *      btNode *root
+ *          - Pointer to the root node of a binary search tree
+ *      int data
+ *          - The value to be inserted into the tree
+ *  
+ * Outputs:
+ *      btNode *
+ *          - Retruns a pointer to the root of a binary search tree with the
+ *              given value removed
+ * 
+ * Description:
+ *     Recursivly search for the given node and deletes it. Tree is adusted
+ *          so that it remains a binary search tree.
+ * 
+ */
+btNode *btree_delete_node_serach_tree(btNode *root, int data) {
+
+    // If given an empty tree
+    if(root == NULL) {
+        return root;
+    }
+
+    // If data is less than current root, search left branch
+    if(data < root->data) {
+        root->left = btree_delete_node_serach_tree(root->left, data);
+    }else if(data > root->data) {
+        // If data is greater than current root, search right branch
+        root->right = btree_delete_node_serach_tree(root->right, data);
+    }else {
+        // If here, data must be the value in root
+        
+        // If root is a leaf node:
+        if((root->left == NULL) && (root->right == NULL)) {
+            return NULL;
+        }else if((root->left != NULL) && (root->right == NULL)) {
+            // If root only has left node, return left node
+            btNode *tmp = root->left;
+            free(root);
+            return tmp;
+        }else if((root->left == NULL) && (root->right != NULL)) {
+            // If root only has right node, return right node
+            btNode *tmp = root->right;
+            free(root);
+            return tmp;
+        }else {
+            // If root has both a right and left node
+            // Find the in-order successor (smalles in right sub-tree)
+            btNode * tmp = btree_min_value_node_serach_tree(root->right);
+            
+            // Overwrite root's value with lowest found value
+            root->data = tmp->data;
+
+            // Delete the in-order successor
+            root->right = btree_delete_node_serach_tree(root->right, tmp->data);
+        }
+    }
+    return root;
+}
+
+
+/*
+ * Name:
+ *      btree_min_value_node_serach_tree
+ * 
+ * Inputs:
+ *      btNode *root
+ *          - Pointer to the root node of a binary search tree
+ *  
+ * Outputs:
+ *      btNode *
+ *          - Retruns a pointer to the smalles valued node in the given tree
+ * 
+ * Description:
+ *     Recursivly search for the lowest valued node in a given search tree.
+ * 
+ */
+btNode *btree_min_value_node_serach_tree(btNode *root) {
+    btNode *cur = root;
+
+    // Loop to find left-most leaf in tree
+    while((cur != NULL) && (cur->left != NULL)) {
+        cur = cur->left;
+    }
+
+    return cur;
+}
+
+
+/*
+ * Name:
  *      btree_search_search_tree
  * 
  * Inputs:
