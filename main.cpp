@@ -25,7 +25,14 @@ int main(int argc, char **argv) {
     // Close data file
     dataFile.close();
 
+    std::cout << "inorder: ";
     btree_print_in_order(root);
+
+    // print a newline before pre-order
+    std::cout << '\n';
+
+    std::cout << "preorder: ";
+    btree_print_pre_order(root);
 
     // print a newline before exiting
     std::cout << '\n';
