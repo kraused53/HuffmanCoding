@@ -11,13 +11,18 @@ int main(int argc, char **argv) {
 
     // Create new, empty binary tree
     btNode *root = NULL;
+    int val_to_delete = -1;
 
     // Open file
     std::ifstream dataFile;
     dataFile.open(argv[1]);
 
-    // Walk throug file line by line
     std::string line;
+     // First line will be the value to delete
+    std::getline(dataFile, line);
+    val_to_delete = stoi(line);
+
+    // Walk through rest of file line by line
     while(std::getline(dataFile, line)) {
         root = btree_insert_node_serach_tree(root, stoi(line));
     }
@@ -25,6 +30,10 @@ int main(int argc, char **argv) {
     // Close data file
     dataFile.close();
 
+    // Delete given value
+    root = btree_delete_node_serach_tree(root, val_to_delete);
+
+    // Print remaining tree
     std::cout << "inorder: ";
     btree_print_in_order(root);
 
