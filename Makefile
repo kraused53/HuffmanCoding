@@ -11,28 +11,21 @@ all: $(OBJS)
 .cpp.o:
 	$(GPP) -c $*.cpp
 
-testall: test1 test2 test3 test4
+memcheck: all
+	@echo "Check for memory leaks"
+	valgrind --leak-check=yes ./main ./inputs/input1.txt
+
+testall: test1 test2
 
 test1: all
-	@echo "Delete a Node with no children"
+	@echo "Small Test File"
 	./main ./inputs/input1.txt > ./outputs/output1.txt
 	diff ./outputs/output1.txt ./expected/expected1.txt
 
 test2: all
-	@echo "Delete a Node with only left child children"
+	@echo "Medium Test File"
 	./main ./inputs/input2.txt > ./outputs/output2.txt
 	diff ./outputs/output2.txt ./expected/expected2.txt
-	
-test3: all
-	@echo "Delete a Node with only right child children"
-	./main ./inputs/input3.txt > ./outputs/output3.txt
-	diff ./outputs/output3.txt ./expected/expected3.txt
-
-test4: all
-	@echo "Delete a Node with two children"
-	./main ./inputs/input4.txt > ./outputs/output4.txt
-	diff ./outputs/output4.txt ./expected/expected4.txt
-
 
 clean:
 	rm -f main *.o
