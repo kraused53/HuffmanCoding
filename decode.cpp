@@ -137,6 +137,37 @@ int decode(char *in_file, char *out_file) {
 
     print_number_char(numChar, out_ptr);
 
+    if(newLine != '\n') {
+        std::cout << "Decoding Error!\n";
+        return -1;
+    }
+
+    unsigned char current_bit = 0;
+    unsigned char current_byte = 0;
+    unsigned char single_bit = 0;
+
+    while(numChar != 0) {
+        btNode *node = root;
+
+        // When a character node is found, print the node's char and
+        // Return to the root of the tree.
+        while((node->left) != NULL) {
+            read_bit(in_ptr, &single_bit, &current_bit, &current_byte);
+            // If bit is 0, move to left child
+            if(single_bit == 0) {
+                node = node->left;
+            }else {
+                // If 1, move to right child
+                node = node->right;
+            }
+        }
+
+        // Print the found character
+        fprintf(out_ptr, "%c", node->value);
+        // Decrement numChars
+        numChar--;
+    }
+
     // Free used memory
     tree_destroy(root);
     fclose(in_ptr);
