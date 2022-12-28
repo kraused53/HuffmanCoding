@@ -2,7 +2,7 @@ ERROR = -Wvla -Werror
 WARNING = -Wall -Wshadow --pedantic
 GPP = g++ -g $(WARNING) $(ERROR)
 
-SRCS = main.cpp list.cpp tree.cpp
+SRCS = main.cpp list.cpp tree.cpp decode.cpp utilities.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 all: $(OBJS)
