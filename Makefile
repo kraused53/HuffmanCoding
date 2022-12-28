@@ -2,7 +2,7 @@ ERROR = -Wvla -Werror
 WARNING = -Wall -Wshadow --pedantic
 GPP = g++ -g $(WARNING) $(ERROR)
 
-SRCS = main.cpp llist.cpp btree.cpp
+SRCS = main.cpp list.cpp tree.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 all: $(OBJS)
@@ -19,7 +19,7 @@ testall: test1 test2
 
 test1: all
 	@echo "Small Test File"
-	./main ./inputs/input1.txt > ./outputs/output1.txt
+	./main ./inputs/empty.txt -a > ./outputs/output1.txt
 	diff ./outputs/output1.txt ./expected/expected1.txt
 
 test2: all
