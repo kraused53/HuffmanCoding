@@ -3,8 +3,8 @@
 
 
 int main(int argc, char **argv) {
-    if(argc != 2) {
-        std::cout << "Please provide the path to a .txt file\n";
+    if(argc != 3) {
+        std::cout << "Please provide input and output file paths.\n";
     }
 
     
