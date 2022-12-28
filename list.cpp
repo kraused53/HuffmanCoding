@@ -18,7 +18,30 @@
  * 
  */
 llNode * llNode_merge(llNode *head) {
-    // This is just so that it will compile
+    // Get the second and third nodes of the list
+    llNode *second_node = head->next;
+    llNode *third_node = second_node->next;
+
+    // Get the binary trees of the first two elements
+    btNode *becomes_right = head->tree_node;
+    btNode *becomes_left = second_node->tree_node;
+
+    // Merge the two trees
+    btNode *merge = new btNode(becomes_left, becomes_right);
+
+    // Create a new list node with the merged tree
+    llNode *new_node = new llNode(merge);
+
+    // Delete the first two elements of the linked list WITHOUT deleting trees
+    delete head;
+    delete second_node;
+
+    // Move head to the previously third element CAN BE NULL
+    head = third_node;
+
+    // Insert newly created node as the new head node of the list
+    head = llNode_insert(head, new_node);
+
     return head;
 }
 

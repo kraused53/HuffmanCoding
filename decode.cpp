@@ -24,7 +24,6 @@
  * 
  */
 btNode *read_header(FILE *in_ptr) {
-
     // Function flags
     int done = 0;
 
