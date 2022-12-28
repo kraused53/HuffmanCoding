@@ -12,8 +12,7 @@ all: $(OBJS)
 	$(GPP) -c $*.cpp
 
 memcheck: all
-	@echo "Check for memory leaks"
-	valgrind --leak-check=yes ./main ./inputs/input1.txt ./outputs/output1.txt
+	valgrind --leak-check=yes ./main ./inputs/input1.bin ./outputs/valgrind.log
 
 testall: test1 test2 test3 test4 test5 test6 test7 test8
 
